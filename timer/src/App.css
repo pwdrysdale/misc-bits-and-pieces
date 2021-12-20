@@ -1,0 +1,23 @@
+.container {
+    background-color: aqua;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    transition: all 0.5s ease;
+    justify-content: center;
+}
+
+.timer-container {
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 600px) {
+    .container {
+        width: 100px;
+    }
+}
