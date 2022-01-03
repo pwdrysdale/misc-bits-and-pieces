@@ -4,15 +4,15 @@ export const useArray = <T,>(initialValue: T[] = []) => {
   const [value, setValue] = useState<T[]>(initialValue);
 
   const addItem = useCallback(
-    (item: T) => {
-      setValue((previous) => [...previous, item]);
+    (item: T): void => {
+      setValue((previous): T[] => [...previous, item]);
     },
     [setValue]
   );
 
   const removeItem = useCallback(
     (item: T) => {
-      setValue((previous) => previous.filter((i) => i !== item));
+      setValue((previous): T[] => previous.filter((i): boolean => i !== item));
     },
     [setValue]
   );
