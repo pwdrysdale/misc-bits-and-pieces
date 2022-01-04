@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 // a useToggle hook which returns a boolean value and
 // a function to toggle it allowing for a specific state

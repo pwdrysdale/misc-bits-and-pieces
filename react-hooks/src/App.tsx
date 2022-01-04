@@ -1,5 +1,3 @@
-import logo from "./logo.svg";
-import React from "react";
 import "./App.css";
 import { useArray } from "./hooks/useArray";
 import UseMemoExample from "./useMemoExample";
@@ -7,6 +5,7 @@ import SortMessages from "./SortMessages";
 import { useToggle } from "./hooks/useToggle";
 import { useKey } from "./hooks/useKey";
 import { useHover } from "./hooks/useHover";
+import { useCounter } from "./hooks/useCounter";
 
 const messages = [
   {
@@ -37,7 +36,9 @@ function App() {
     toggleVal
   );
 
-  const [hoverProps, hovering] = useHover<HTMLDivElement>();
+  const [hoveringRef, hovering] = useHover<HTMLDivElement>();
+
+  const { increment, decrement, value: counterValue } = useCounter(0, 4, 0, 10);
 
   const initial = {
     id: 1,
@@ -55,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <h1>useHover</h1>
-      <div {...hoverProps}>{hovering ? "👍 Yes please" : "Hover over me!"}</div>
+      <div ref={hoveringRef}>{hovering ? "👍 Yes please" : "No love 💔"}</div>
       <h1>useKey</h1>
       <p>Press a!</p>
       <h1>useToggle</h1>
@@ -63,6 +64,11 @@ function App() {
       <button onClick={toggle}>Straight toggle</button>
       <button onClick={() => toggle(true)}>Set true</button>
       <button onClick={() => toggle(false)}>Set false</button>
+      <h1>useCounter</h1>
+      <h3>{counterValue}</h3>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+
       <h1>useArray</h1>
       <button
         onClick={() =>

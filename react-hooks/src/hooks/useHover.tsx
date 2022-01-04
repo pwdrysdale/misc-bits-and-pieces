@@ -1,33 +1,29 @@
-import React, {
-  useState,
-  useCallback,
-  useRef,
-  useEffect,
-  MutableRefObject,
-  RefObject,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  useMemo,
-} from "react";
+import { useRef, useState, useEffect, RefObject } from "react";
 
-type HoverData<T extends HTMLElement> = {
-  hoverProps: DetailedHTMLProps<HTMLAttributes<T>, T>;
-  isHovered: boolean;
-};
+// react hook for hovering, returning a
+// ref to the element and a boolean
+// indicating if the element is hovered
 
-export const useHover = <T extends HTMLElement>(): [
-  DetailedHTMLProps<HTMLAttributes<T>, T>,
-  boolean
-] => {
+// note that you must specify the type of the
+// element you are hovering over
+// e.g. const {ref, isHovering} = useHover<HTMLDivElement>()
+export const useHover = <T extends HTMLElement>(): [RefObject<T>, boolean] => {
   const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<T>(null);
 
-  const hoverProps: DetailedHTMLProps<HTMLAttributes<T>, T> = useMemo(
-    () => ({
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-    }),
-    [setIsHovered]
-  );
+  useEffect(() => {
+    const node = ref.current;
 
-  return [hoverProps, isHovered];
+    if (node) {
+      node.addEventListener("mouseenter", () => setIsHovered(true));
+      node.addEventListener("mouseleave", () => setIsHovered(false));
+    }
+    if (node) {
+      return () => {
+        node.removeEventListener("mouseenter", () => setIsHovered(true));
+        node.removeEventListener("mouseleave", () => setIsHovered(false));
+      };
+    }
+  });
+  return [ref, isHovered];
 };
