@@ -1,8 +1,12 @@
 import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
 import { useArray } from "./hooks/useArray";
 import UseMemoExample from "./useMemoExample";
 import SortMessages from "./SortMessages";
+import { useToggle } from "./hooks/useToggle";
+import { useKey } from "./hooks/useKey";
+import { useHover } from "./hooks/useHover";
 
 const messages = [
   {
@@ -23,6 +27,18 @@ const messages = [
 ];
 
 function App() {
+  const [toggleVal, toggle] = useToggle(true);
+
+  useKey(
+    "a",
+    () => {
+      alert("a key pressed");
+    },
+    toggleVal
+  );
+
+  const [hoverProps, hovering] = useHover<HTMLDivElement>();
+
   const initial = {
     id: 1,
     name: "React Hooks",
@@ -38,6 +54,16 @@ function App() {
 
   return (
     <div className="App">
+      <h1>useHover</h1>
+      <div {...hoverProps}>{hovering ? "👍 Yes please" : "Hover over me!"}</div>
+      <h1>useKey</h1>
+      <p>Press a!</p>
+      <h1>useToggle</h1>
+      <p>{toggleVal ? "The mood is 🔥" : "😢"}</p>
+      <button onClick={toggle}>Straight toggle</button>
+      <button onClick={() => toggle(true)}>Set true</button>
+      <button onClick={() => toggle(false)}>Set false</button>
+      <h1>useArray</h1>
       <button
         onClick={() =>
           addItem({ id: Math.random(), name: `Item ${value.length}` })
