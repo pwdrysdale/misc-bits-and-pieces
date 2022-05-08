@@ -1,0 +1,4 @@
+SELECT vPastStudentClasses.StudentSurname AS 'Family', vPastStudentClasses.StudentPreferred AS 'Given', vPastStudentClasses.SchoolStaffCode AS 'Teacher', vPastStudentClasses.ClassCode AS 'Class', vPastStudentClasses.StudentID AS 'Stud ID', vPastStudentClasses.StudentHouse AS 'House', vPastStudentClasses.StudentTutor AS 'Tutor', vPastStudentClasses.StudentStudiesCode AS 'BOSTES Code'
+FROM  vPastStudentClasses
+WHERE (vPastStudentClasses.CurrentSemesterOnlyFlag=1) AND (vPastStudentClasses.ClassCampus='K') AND (vPastStudentClasses.FileYear = ? ) AND (vPastStudentClasses.StudentYearLevel = ? )
+ORDER BY vPastStudentClasses.ClassCode, vPastStudentClasses.StudentSurname, vPastStudentClasses.StudentPreferred

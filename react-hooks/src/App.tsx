@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 import { useArray } from "./hooks/useArray";
 import UseMemoExample from "./useMemoExample";
@@ -6,6 +7,7 @@ import { useToggle } from "./hooks/useToggle";
 import { useKey } from "./hooks/useKey";
 import { useHover } from "./hooks/useHover";
 import { useCounter } from "./hooks/useCounter";
+import { useDebounce } from "./hooks/useDebounce";
 
 const messages = [
   {
@@ -26,7 +28,14 @@ const messages = [
 ];
 
 function App() {
+  const [predebounce, setPredebounce] = useState("");
+
   const [toggleVal, toggle] = useToggle(true);
+
+  const bounced = useDebounce(predebounce, 1000);
+  useEffect(() => {
+    console.log(bounced);
+  }, [bounced]);
 
   useKey(
     "a",
@@ -77,6 +86,11 @@ function App() {
       >
         Add Item
       </button>
+      <h1>useDebounce</h1>
+      <input
+        value={predebounce}
+        onChange={(e) => setPredebounce(e.target.value)}
+      />
       {value.map((item) => (
         <div key={item.id}>
           {item.name}

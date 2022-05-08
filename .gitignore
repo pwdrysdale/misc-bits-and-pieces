@@ -2,3 +2,10 @@
 /redux-boot/node_modules
 /timer/node_modules
 /react-hooks/node_modules
+/todosapp/node_modules
+/react-context/.DS_Store
+/redux-boot/.DS_Store
+/timer/.DS_Store
+/react-hooks/.DS_Store
+/todosapp/.DS_Store
+.DS_Store

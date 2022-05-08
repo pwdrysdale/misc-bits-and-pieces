@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border bg-black;
+  /* color: white; */
+}
+
+button {
+  @apply px-4 py-2 overflow-hidden text-white duration-150 transform bg-gray-800 border-none rounded-md cursor-pointer;
+}
+
+button:hover {
+  @apply bg-gray-700;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  color: white;
+  transform: upperCase;
+  font-weight: bold;
+  @apply font-black tracking-widest uppercase;
+}
+
+td {
+  @apply align-middle bg-inherit;
+}
+
+input,
+select {
+  @apply p-2 text-white;
+}
+
+input:focus {
+  @apply bg-gray-800 rounded-md outline-none;
+}
+
+/* checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+}
+
+input [type="date"] {
+  @apply text-white cursor-pointer;
+}
+
+input [type="text"] {
+  @apply flex-1 w-max;
+}
+
+.main {
+  @apply flex flex-col items-center justify-center h-full px-10;
+}
+
+.icon {
+  @apply p-2 m-2 w-9 h-9;
+}
+
+.icon-button {
+  @apply p-2 overflow-hidden rounded-md cursor-pointer bg-inherit w-9 h-9;
+}
+
+.buttonGroup {
+  @apply flex items-center justify-between gap-4 mt-4;
+}
